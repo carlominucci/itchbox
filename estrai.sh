@@ -1,5 +1,5 @@
 #!/bin/bash
-
+DESKTOPPATH=$(cat $HOME/.config/user-dirs.dirs | grep DESKTOP | awk -F "/" '{print $2}' | sed -e 's/"//g')
 NOME=$(ls -1 download/ | head -1)
 NOMEDIR=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g")
 NOMEICONA=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g" | awk -F "Linux|LINUX|linux" '{print $1}' | sed -e 's/-//g' | sed -e 's/_//g')
@@ -75,17 +75,17 @@ chmod 755 "$ESEGUIBILE"
 
 echo "Creo il collegamento"
 echo "$NOMEDIR,\"$ESEGUIBILE\"" >> data/lista.csv
-echo "[Desktop Entry]" > "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Version=1.0" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Type=Application" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Name=$NOMEICONA"  >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Comment=$NOMEICONA" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Exec=\"$HOME/itchbox/$ESEGUIBILE\"" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Icon=applications-arcade" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Path=" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "Terminal=false" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "StartupNotify=false" >> "$HOME/Scrivania/$NOMEDIR.desktop"
-echo "GenericName=$NOMEDIR"  >> "$HOME/Scrivania/$NOMEDIR.desktop"
+echo "[Desktop Entry]" > "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Version=1.0" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Type=Application" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Name=$NOMEICONA"  >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Comment=$NOMEICONA" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Exec=\"$HOME/itchbox/$ESEGUIBILE\"" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Icon=applications-arcade" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Path=" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "Terminal=false" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "StartupNotify=false" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
+echo "GenericName=$NOMEDIR"  >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 
 echo "Setto il permesso +x al collegamento"
-chmod 755 $HOME/Scrivania/$NOMEDIR.desktop
+chmod 755 $HOME/$DESKTOPPATH/$NOMEDIR.desktop
