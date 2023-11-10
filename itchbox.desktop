@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=itch
+Comment=itch
+Exec=/home/itchbox/itchbox/joypadconf.sh
+Icon=input-gaming
+Path=/home/itchbox/itchbox
+Terminal=false
+StartupNotify=true
+RunHook=0
+Hidden=false
+

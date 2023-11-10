@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Spegni
+GenericName=Spegni la itchbox
+Comment=SPegni la itchbox
+Exec=/home/itchbox/itchbox/spegni.sh
+Type=Application
+Icon=system-suspend-symbolic
+Terminal=false

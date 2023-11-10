@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Aggiorna
+GenericName=Aggiorna lista giochi
+Comment=Aggiorna lista giochi
+Exec=/home/itchbox/itchbox/estrai.sh
+Type=Application
+Icon=emblem-synchronizing-symbolic
+Terminal=false
