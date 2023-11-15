@@ -31,7 +31,6 @@ echo
 echo "*****-----> Scarico le altre parti del core system..."
 echo
 curl --output $HOME/itchbox/estrai.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/estrai.sh
-curl --output $HOME/itchbox/spegni.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main//spegni.sh
 curl --output $HOME/itchbox/data/sfondo.jpg --url https://raw.githubusercontent.com/carlominucci/itchbox/main/sfondo.jpg
 curl --output $HOME/itchbox/data/itchbox128.png --url https://raw.githubusercontent.com/carlominucci/itchbox/main/itchbox128.png
 curl --output $HOME/itchbox/joypadconf.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/joypadconf.sh
