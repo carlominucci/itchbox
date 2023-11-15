@@ -14,7 +14,7 @@
 ## enter 0xff0d
 ## click pointer 0xfee0
 ## https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
-nohup /home/itchbox/itchbox/joymap -9 0xff0d -u "Up Down" -t "Left Right" 2>&1
+nohup $HOME/itchbox/data/joymap -9 0xff0d -u "Up Down" -t "Left Right" 2>&1
 sleep 5
 xdotool click 1 > /tmp/prova.log
 exit 

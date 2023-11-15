@@ -68,4 +68,12 @@ echo
 sudo smbpasswd -a itchbox
 sudo /etc/init.d/smbd restart
 echo
+echo "*****-----> Disabilito lo screensaver..."
+echo
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+gsettings set org.gnome.desktop.screensaver idle-activation-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
+echo
 echo "*****-----> Installazione completata..."
