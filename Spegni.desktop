@@ -2,7 +2,7 @@
 Name=Spegni
 GenericName=Spegni la itchbox
 Comment=SPegni la itchbox
-Exec=/home/itchbox/itchbox/spegni.sh
+Exec=poweroff
 Type=Application
 Icon=system-suspend-symbolic
 Terminal=false

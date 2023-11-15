@@ -49,6 +49,7 @@ curl --output $DESKTOPPATH/Aggiorna.desktop --url https://raw.githubusercontent.
 curl --output $DESKTOPPATH/Spegni.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/Spegni.desktop
 chmod 775 $DESKTOPPATH/Aggiorna.desktop
 chmod 755 $DESKTOPPATH/Spegni.desktop
+sudo chmod u+s /sbin/poweroff
 echo
 echo "*****-----> Configuro l'avvio automatico di itchbox..."
 echo
