@@ -4,5 +4,5 @@ GenericName=Spegni la itchbox
 Comment=SPegni la itchbox
 Exec=poweroff
 Type=Application
-Icon=system-suspend-symbolic
+Icon=/home/itchbox/itchbox/data/spegni128.png
 Terminal=false
