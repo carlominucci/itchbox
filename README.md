@@ -12,5 +12,7 @@ _Istruzioni_
 * Installare una Ubuntu Cinnamon (dovrebbe funzionare anche sulle altre derivate da Ubuntu)
 * Scaricate il file install-itchbox.sh
 * Eseguitelo e seguite le istruzioni ed eseguite un riavvio
-Ora dovreste avere il desktop con solo due icone "Spegni" e "Aggiorna".
-Inoltre dovrebbe esserci una cartella condivisione di rete dove caricare i giochi zippati da remoto.
+* Ora dovreste avere il desktop con solo due icone "Spegni" e "Aggiorna".
+* Inoltre dovrebbe esserci una cartella condivisione di rete dove caricare i giochi zippati da remoto.
+* Scaricate il file compresso del gioco da itch.io e copiatelo nella cartella condivisa di rete
+* Lanciate "Aggiorna" col joypad e dovrebbe installarsi il gioco con un link sul desktop
