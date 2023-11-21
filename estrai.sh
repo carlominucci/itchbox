@@ -3,7 +3,7 @@ cd $HOME/itchbox
 DESKTOPPATH=$(cat $HOME/.config/user-dirs.dirs | grep DESKTOP | awk -F "/" '{print $2}' | sed -e 's/"//g')
 NOME=$(ls -1 download/ | head -1)
 NOMEDIR=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g")
-NOMEICONA=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g" | awk -F "Linux|LINUX|linux" '{print $1}' | sed -e 's/-//g' | sed -e 's/_//g')
+NOMEICONA=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g" | awk -F "Linux|LINUX|linux" '{print $1}' | sed -e 's/-//g' | sed -e 's/_//g' | sed -e 's/[0-9]//g')
 FORMATO=$(file --mime-type "download/$NOME" | awk -F ":" '{print $2}' | awk -F "/" '{print $2}')
 
 if [[ -z $NOME ]]
@@ -74,8 +74,23 @@ echo $ESEGUIBILE
 echo "Setto il permesso +x all'eseguibile"
 chmod 755 "$ESEGUIBILE"
 
+echo "Scarico l'icona del gioco"
+echo $NOMEICONA
+NOMERICERCA=`echo $NOMEICONA | sed -e 's/\ /+/g'`
+URL=$(curl --silent https://itch.io/search?q=$NOMERICERCA | awk -F "data-lazy_src" '{print $2}' | awk -F "\"" '{print $2}' | grep https)
+if [ -v $URL ];
+then
+        echo "nessuna immagine trovata"
+	NOMEFILE="noimage.png"
+else
+        echo "Scarico il file"
+        NOMEFILE=$(basename $URL)
+        curl -o data/$NOMEFILE $URL
+fi
+
+
 echo "Creo il collegamento"
-echo "$NOMEDIR,\"$ESEGUIBILE\"" >> data/lista.csv
+echo "$NOMEICONA,\"$ESEGUIBILE\",$NOMEFILE" >> data/lista.csv
 echo "[Desktop Entry]" > "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Version=1.0" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Type=Application" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
@@ -88,5 +103,6 @@ echo "Terminal=false" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "StartupNotify=false" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "GenericName=$NOMEDIR"  >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 
+
 echo "Setto il permesso +x al collegamento"
-chmod 755 $HOME/$DESKTOPPATH/$NOMEDIR.desktop
+chmod 755 "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
