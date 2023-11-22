@@ -1,82 +1,47 @@
 #!/bin/bash
+DESKTOPPATH=$(cat $HOME/.config/user-dirs.dirs | grep DESKTOP | awk -F "/" '{print $2}' | sed -e 's/"//g')
 clear
-echo "*****-----> Installo il core system di itchbox..."
+echo -e "\t\033[0;31m*-----------> Installo il core system di itchbox...\033[0;36m"
 cd
-echo
-echo "*****----->Creo le cartelle di sistema..."
-echo
+echo -e "\t\033[0;31m**---------->Creo le cartelle di sistema...\033[0;36m"
 mkdir $HOME/itchbox
 mkdir $HOME/itchbox/data
 mkdir $HOME/itchbox/download
 mkdir $HOME/itchbox/games
-echo
-echo "*****-----> Scarico e installo curl..."
-echo
+echo -e "\t\033[0;31m***---------> Scarico e installo curl...\033[0;36m"
 sudo apt -y install curl
-echo
-echo "*****-----> Sarico i sorgenti di joymap..."
-echo
+echo -e "\t\033[0;31m****--------> Sarico i sorgenti di joymap...\033[0;36m"
 curl -O https://raw.githubusercontent.com/wizlab-it/joymap/master/joymap.c 
-echo
-echo "*****-----> Installo le dipendenze e il compilatore..."
-echo
+echo -e "\t\033[0;31m******------> Installo le dipendenze e il compilatore...\033[0;36m"
 sudo apt -y install libxdo-dev
 sudo apt -y install gcc
-echo
-echo "*****-----> Compilo joypad e rimuovo i sorgenti..."
-echo
-gcc joymap.c -lxdo -o $HOME/itchbox/data/joymap
+echo -e "\t\033[0;31m******------> Compilo joypad e rimuovo i sorgenti...\033[0;36m"
+gcc joymap.c -lxdo -o itchbox/data/joymap
 rm joymap.c
-echo
-echo "*****-----> Scarico le altre parti del core system..."
-echo
+echo -e "\t\033[0;31m*******------> Scarico le altre parti del core system...\033[0;36m"
 curl --output $HOME/itchbox/estrai.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/estrai.sh
+curl --output $HOME/itchbox/spegni.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main//spegni.sh
 curl --output $HOME/itchbox/data/sfondo.jpg --url https://raw.githubusercontent.com/carlominucci/itchbox/main/sfondo.jpg
 curl --output $HOME/itchbox/data/itchbox128.png --url https://raw.githubusercontent.com/carlominucci/itchbox/main/itchbox128.png
 curl --output $HOME/itchbox/joypadconf.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/joypadconf.sh
 chmod 775 $HOME/itchbox/joypadconf.sh
-echo
-echo "*****-----> Setto i permessi del core system..."
-echo
+echo -e "\t\033[0;31m********-----> Setto i permessi del core system...\033[0;36m"
 chmod 775 $HOME/itchbox/estrai.sh
 chmod 775 $HOME/itchbox/spegni.sh
-echo
-echo "*****-----> Scarico e installo i comandi del core system..."
-echo
-DESKTOPPATH=$(cat $HOME/.config/user-dirs.dirs | grep DESKTOP | awk -F "/" {'print $2'} | sed -e 's/"//g')
-curl --output $DESKTOPPATH/Aggiorna.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/Aggiorna.desktop 
-curl --output $DESKTOPPATH/Spegni.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/Spegni.desktop
-chmod 775 $DESKTOPPATH/Aggiorna.desktop
-chmod 755 $DESKTOPPATH/Spegni.desktop
-sudo chmod u+s /sbin/poweroff
-echo
-echo "*****-----> Configuro l'avvio automatico di itchbox..."
-echo
+echo -e "\t\033[0;31m*********----> Scarico e installo i comandi del core system...\033[0;36m"
+curl --output $HOME/$DESKTOPPATH/Aggiorna.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/Aggiorna.desktop 
+curl --output $HOME/$DESKTOPPATH/Spegni.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/Spegni.desktop
+chmod 775 $HOME/$DESKTOPPATH/Aggiorna.desktop
+chmod 775 $HOME/$DESKTOPPATH/Spegni.desktop
+echo -e "\t\033[0;31m**********---> Configuro l'avvio automatico di itchbox...\033[0;36m"
 mkdir $HOME/.config/autostart/
 curl --output $HOME/.config/autostart/itchbox.desktop --url https://raw.githubusercontent.com/carlominucci/itchbox/main/itchbox.desktop
-chmod 755 $HOME/.config/autostart/itchbox.desktop
-echo
-echo "*****-----> Configuro la condivisione di rete per l'upload dei pacchetti dei giochi..."
-echo
+chmod 755 $HOME/./config/autostart/itchbox.desktop
+echo -e "\t\033[0;31m***********--> Configuro la condivisione di rete per l'upload dei pacchetti dei giochi...\033[0;36m"
 sudo apt -y install samba
 sudo apt -y install samba-common
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.orig
 sudo curl --output /etc/samba/smb.conf --url https://raw.githubusercontent.com/carlominucci/itchbox/main/smb.conf
-echo
-echo "*****-----> Inserisci la password per la cartella di rete..."
-echo
-sudo smbpasswd -a itchbox
+echo -e "\t\033[0;31m************-> Inserisci la password per la cartella di rete...\033[0;36m"
 sudo /etc/init.d/smbd restart
-echo
-echo "*****-----> Preparo il desktop e disabilito lo screensaver..."
-echo
-gsettings set org.gnome.desktop.lockdown disable-lock-screen true
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
-gsettings set org.gnome.desktop.screensaver idle-activation-enabled false
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.background show-desktop-icons false
-gsettings set org.gnome.desktop.background picture-uri file:///$HOME/itchbox/data/sfondo.jpg
-echo
-echo "*****-----> Installazione completata..."
-echo
+echo -e "\t\033[0;32m*************> Installazione completata...\033[0;36m"
