@@ -86,7 +86,7 @@ fi
 
 
 echo -e "\033[0;32mCreo il collegamento\033[0;37m"
-echo "$NOMEICONA,\"$ESEGUIBILE\",$NOMEFILE" >> data/lista.csv
+echo "$NOMEICONA,$ESEGUIBILE,$NOMEFILE" >> data/lista.csv
 echo "[Desktop Entry]" > "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Version=1.0" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Type=Application" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
