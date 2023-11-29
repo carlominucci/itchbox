@@ -8,8 +8,10 @@ mkdir -v $HOME/itchbox
 mkdir -v $HOME/itchbox/data
 mkdir -v $HOME/itchbox/download
 mkdir -v $HOME/itchbox/games
-echo -e "\t\033[0;31m***---------> Scarico e installo curl...\033[0;36m"
+echo -e "\t\033[0;31m***---------> Scarico e installo le dipendenze...\033[0;36m"
 sudo apt -y install curl
+sudo apt -y install python3-pyqt5
+sudo apt -y install python3-pygame
 echo -e "\t\033[0;31m****--------> Sarico i sorgenti di joymap...\033[0;36m"
 curl -O https://raw.githubusercontent.com/wizlab-it/joymap/master/joymap.c 
 echo -e "\t\033[0;31m******------> Installo le dipendenze e il compilatore...\033[0;36m"
@@ -24,8 +26,8 @@ curl --output $HOME/itchbox/data/sfondo.jpg --url https://raw.githubusercontent.
 curl --output $HOME/itchbox/data/itchbox128.png --url https://raw.githubusercontent.com/carlominucci/itchbox/main/itchbox128.png
 curl --output $HOME/itchbox/joypadconf.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/joypadconf.sh
 chmod -v 775 $HOME/itchbox/joypadconf.sh
-echo "aggiorna128.png,$HOME/itchbox/estrai.sh,Aggiorna" > $HOME/itchbox/data/lista.csv
-echo "spegni128.png,poweroff,Spegni" >> $HOME/itchbox/data/lista.csv
+echo "Aggiorna,$HOME/itchbox/estrai.sh,aggiorna128.png" > $HOME/itchbox/data/lista.csv
+echo "Spegni,poweroff,spegni128.png" >> $HOME/itchbox/data/lista.csv
 echo -e "\t\033[0;31m********-----> Setto i permessi del core system...\033[0;36m"
 chmod -v 775 $HOME/itchbox/estrai.sh
 echo -e "\t\033[0;31m*********----> Scarico e installo i comandi del core system...\033[0;36m"
