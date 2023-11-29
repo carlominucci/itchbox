@@ -24,6 +24,8 @@ curl --output $HOME/itchbox/data/sfondo.jpg --url https://raw.githubusercontent.
 curl --output $HOME/itchbox/data/itchbox128.png --url https://raw.githubusercontent.com/carlominucci/itchbox/main/itchbox128.png
 curl --output $HOME/itchbox/joypadconf.sh --url https://raw.githubusercontent.com/carlominucci/itchbox/main/joypadconf.sh
 chmod -v 775 $HOME/itchbox/joypadconf.sh
+echo "aggiorna128.png,$HOME/itchbox/estrai.sh,Aggiorna" > $HOME/itchbox/data/lista.csv
+echo "spegni128.png,poweroff,Spegni" >> $HOME/itchbox/data/lista.csv
 echo -e "\t\033[0;31m********-----> Setto i permessi del core system...\033[0;36m"
 chmod -v 775 $HOME/itchbox/estrai.sh
 echo -e "\t\033[0;31m*********----> Scarico e installo i comandi del core system...\033[0;36m"
