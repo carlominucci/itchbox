@@ -106,7 +106,12 @@ else
 fi
 
 echo -e "\033[0;32mCreo il collegamento\033[0;37m"
-echo "$NOMEICONA,$ESEGUIBILE,$NOMEFILE" >> data/lista.csv
+if [[ -v `cat data/lista.csv | grep $NOMEICONA | wc -l` ]]
+then
+	echo "$NOMEICONA,$ESEGUIBILE,$NOMEFILE" >> data/lista.csv
+else
+	echo "Il collegamento esiste già"
+fi
 echo "[Desktop Entry]" > "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Version=1.0" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
 echo "Type=Application" >> "$HOME/$DESKTOPPATH/$NOMEDIR.desktop"
