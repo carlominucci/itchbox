@@ -1,5 +1,6 @@
 #!/bin/bash
 cd $HOME/itchbox
+rm $HOME/itchbox/download/._*
 DESKTOPPATH=$(cat $HOME/.config/user-dirs.dirs | grep DESKTOP | awk -F "/" '{print $2}' | sed -e 's/"//g')
 NOME=$(ls -1 download/ | head -1)
 #NOMEDIR=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g")
