@@ -24,6 +24,8 @@ echo $NOMEICONA
 
 echo -e "\033[0;31mRimuovo la directory del gioco\033[0;36m"
 rm -vrf "$PATHGAME"
+echo -e "\033[;31mRimuovo il file dell'icona\033[0;36m"
+rm -v `cat $HOME/$DESKTOPPATH/$NOMEICONA.desktop | grep Icon | awk -F "=" '{print $2}'`
 echo -e "\033[0;31mRimuovo il collegamento\033[0;36m"
 rm -v "$HOME/$DESKTOPPATH/$NOMEICONA.desktop"
 echo -e "\033[0;31mRimuovo il riferimento nel registro\033[0;36m"
