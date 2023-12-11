@@ -14,7 +14,7 @@ fi
 
 echo -e "\033[0;32mTrovato un nuovo gioco: \033[0;37m$NOME"
 
-if [[ -z $(file download/$NOME | grep exe) ]]
+if [[ $(file "download/$NOME" | grep compress) ]]
 then
 	echo "File compresso"	
 	NOMEDIR=$(ls -1 download/ | head -1 | sed -e "s/.zip//g" -e "s/.tar.gz//g" -e "s/.tar.bz2//g")
@@ -56,7 +56,8 @@ then
 	then
     		ESEGUIBILE=`file --mime-type "$PATHGIOCO"/* | grep "text/x-shellscript"  | cut -d ":" -f 1`
     		echo -e "\033[0;33mScript shell"
-	elif [[ $(file --mime-type "$PATHGIOCO"/* | grep "application/x-executable") ]]
+	fi
+	if [[ $(file --mime-type "$PATHGIOCO"/* | grep "application/x-executable") ]]
     		then
     			echo -e "\033[0;34mEseguibile binario"
     		if [[ $(file --mime-type "$PATHGIOCO"/* | grep "application/x-executable" | wc -l) > 1 ]]
@@ -76,19 +77,19 @@ then
 	rm -v "download/$NOME"
 
 
-elif [[ -z $(file download/$NOME | grep compress) ]]
+elif [[ $(file "download/$NOME" | grep exe) ]]
 then	
 	echo "File eseguibile o immagine"
 	echo $NOME
 	NOMEDIR=`ls -1 download/ | head -1 | awk -F "." '{print $1}'`
-	echo $NOMEDIR
+	echo "$NOMEDIR"
 	echo "Creo la cartella per il gioco"
-	mkdir -v games/$NOMEDIR
+	mkdir -v "games/$NOMEDIR"
 	echo "Ci copio l'eseguibile"
-	cp -v download/$NOME games/$NOMEDIR
+	cp -v "download/$NOME" "games/$NOMEDIR"
 	echo "Setto i permessi dell'eseguibile"
-	chmod -v 755 games/$NOMEDIR/$NOME
-	rm -v download/$NOME
+	chmod -v 755 "games/$NOMEDIR/$NOME"
+	rm -v "download/$NOME"
 	ESEGUIBILE=game/$NOMEDIR/$NOME
 fi
 
@@ -106,7 +107,7 @@ else
 fi
 
 echo -e "\033[0;32mCreo il collegamento\033[0;37m"
-if [[ -v `cat data/lista.csv | grep $NOMEICONA | wc -l` ]]
+if [[ `cat data/lista.csv | grep "$NOMEICONA" | wc -l` ]]
 then
 	echo "$NOMEICONA,$ESEGUIBILE,$NOMEFILE" >> data/lista.csv
 else
